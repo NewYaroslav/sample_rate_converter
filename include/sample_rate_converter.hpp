@@ -128,8 +128,8 @@ public:
         if((interpolation & 1) == 0) return false;
         m_interpolation = interpolation;
         m_Hinterpolation = (unsigned char)((interpolation - 1) >> 1);
-        m_pF.resize(m_interpolation);
-        m_pLI.resize(m_interpolation);
+        m_pF.resize(m_interpolation + 1);
+        m_pLI.resize(m_interpolation + 1);
         m_wrPos = m_interpolation;
         m_dT = (double)inSampleRate / (double)outSampleRate;
         m_T = 0.0;
@@ -322,7 +322,7 @@ public:
         for(size_t i = 0; i < m_fir.size(); ++i)
             m_fir[i] /= sum;
 
-        m_buff.resize(m_mul_count);
+        m_buff.resize(m_mul_count + 1);
 
         for(int i = m_mul_count; i-- > 0;) m_buff[i] = 0;
         m_dT = (double)inSampleRate / (double)outSampleRate;
